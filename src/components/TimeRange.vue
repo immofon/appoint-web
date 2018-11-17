@@ -38,20 +38,7 @@ export default {
   name: "TimeRange",
   data() {
     return {
-      time_ranges: [
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" },
-        { from: 1542096191, to: 1542096191 + 60 * 300, teacher: "庄老师" }
-      ]
+      time_ranges: []
     };
   },
   computed: {
@@ -60,7 +47,7 @@ export default {
         return {
           id: `${tr.from}_${tr.to}`,
           from: utils.unix2time(tr.from),
-          during: `${(tr.to - tr.from) / 60}分钟`,
+          during: `${Math.ceil((tr.to - tr.from) / 60)}分钟`,
           teacher: tr.teacher
         };
       });
@@ -70,8 +57,26 @@ export default {
     (async () => {
       try {
         const ret = await rpc.call("appointment.student.time_ranges");
-        console.log(ret);
+        let trs = Object.values(ret.details).map(tr_raw => {
+          console.log(tr_raw);
+          const [from, to, teacher] = tr_raw.split(":");
+          return {
+            from,
+            to,
+            teacher
+          };
+        });
+
+        trs = trs.sort((a, b) => {
+          return a.from > b.from;
+        });
+
+        this.time_ranges = trs;
+        console.log(trs);
       } catch (e) {
+        if (e.status == "unauthorized") {
+          this.$router.push("/login");
+        }
         console.log(e);
       }
     })();

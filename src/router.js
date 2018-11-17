@@ -9,6 +9,7 @@ import TimeRange from './components/TimeRange.vue'
 export default new Router({
   routes: [{
       path: '/',
+      alias:'/login',
       name: 'login',
       component: Login
     },
