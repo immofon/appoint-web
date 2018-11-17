@@ -56,6 +56,16 @@ export default {
   mounted() {
     (async () => {
       try {
+        const r1 = await rpc.call("appointment.student.status");
+        switch (r1.details.status) {
+          case "appointed":
+            this.$router.push("/student/appointed");
+            break;
+          case "done":
+            this.$router.push("/student/done");
+            break;
+        }
+
         const ret = await rpc.call("appointment.student.time_ranges");
         let trs = Object.values(ret.details).map(tr_raw => {
           console.log(tr_raw);
@@ -83,7 +93,17 @@ export default {
   },
   methods: {
     appoint(tr) {
-      this.$message(`appoint ${tr.id}`);
+      (async () => {
+        try {
+          await rpc.call("appointment.student.appoint", { tr_id: tr.id });
+          this.$router.push("/student/appointed");
+        } catch (e) {
+          if (e.status == "unauthorized") {
+            this.$router.push("/login");
+          }
+          console.log(e);
+        }
+      })();
     }
   }
 };

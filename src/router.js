@@ -6,10 +6,12 @@ Vue.use(Router)
 import Login from './components/Login.vue'
 import TimeRange from './components/TimeRange.vue'
 
+import Appointed from './views/Appointed.vue'
+
 export default new Router({
   routes: [{
       path: '/',
-      alias:'/login',
+      alias: '/login',
       name: 'login',
       component: Login
     },
@@ -17,6 +19,10 @@ export default new Router({
       path: '/student/trs',
       name: 'student/trs',
       component: TimeRange,
+    }, {
+      path: '/student/appointed',
+      name: 'student/appointed',
+      component: Appointed,
     },
     {
       path: '/about',
