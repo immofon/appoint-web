@@ -59,16 +59,7 @@ export default {
         }
       ],
       time_ranges: [
-        { from: 12, to: 23, teacher: "2", status: "disable" },
-        { from: 12, to: 23, teacher: "2", status: "enable" },
-        { from: 12, to: 23, teacher: "2", status: "enable" },
-        { from: 12, to: 23, teacher: "2", status: "disable" },
-        { from: 12, to: 23, teacher: "2", status: "enable" },
-        { from: 12, to: 23, teacher: "2", status: "disable" },
-        { from: 12, to: 23, teacher: "2", status: "enable" },
-        { from: 12, to: 23, teacher: "2", status: "disable" },
-        { from: 12, to: 23, teacher: "2", status: "enable" },
-        { from: 12, to: 23, teacher: "2", status: "disable" }
+        //{ from: 12, to: 23, teacher: "2", status: "disable" }
       ]
     };
   },
