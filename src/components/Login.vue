@@ -27,13 +27,21 @@ export default {
           });
           kv.set("user.account", this.account);
           kv.set("user.password", this.password);
-        } catch (e) {
-          if (e.status == "unauthorized"){
-            this.$message.error("学号或密码错误");
+
+          console.log(r);
+          if (r.details.role == "student") {
+            // if unappointed
+            console.log("ok");
+
+            this.$router.push("/student/trs");
+            // else
           }
-          else {
-              //TODO
-              this.$message.error(JSON.stringify(e))
+        } catch (e) {
+          if (e.status == "unauthorized") {
+            this.$message.error("学号或密码错误");
+          } else {
+            //TODO
+            this.$message.error(JSON.stringify(e));
           }
         }
       })();

@@ -4,13 +4,18 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Login from './components/Login.vue'
-
+import TimeRange from './components/TimeRange.vue'
 
 export default new Router({
   routes: [{
       path: '/',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/student/trs',
+      name: 'student/trs',
+      component: TimeRange,
     },
     {
       path: '/about',
