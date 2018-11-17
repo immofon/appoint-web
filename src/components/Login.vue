@@ -32,10 +32,29 @@ export default {
 
           if (r.details.role == "student") {
             // if unappointed
-            console.log("ok");
-
-            this.$router.push("/student/trs");
-            // else
+            (async () => {
+              try {
+                const ret = await rpc.call("appointment.student.status");
+                const status = ret.details.status;
+                switch (status) {
+                  case "done":
+                    this.$router.push("/student/done");
+                    break;
+                  case "appointed":
+                    this.$router.push("/student/appointed");
+                    break;
+                  case "unappointed":
+                    this.$router.push("/student/trs");
+                    break;
+                  default:
+                    console.log("unexpect status:", status);
+                    this.$router.push("/error");
+                }
+              } catch (e) {
+                console.log(e);
+                this.$router.push("/error");
+              }
+            })();
           } else if (r.details.role == "teacher") {
             this.$router.push("/teacher");
           } else if (r.details.role == "admin") {

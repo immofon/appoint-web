@@ -9,6 +9,7 @@ import TimeRange from './components/TimeRange.vue'
 import Appointed from './views/Appointed.vue'
 import Teacher from './views/Teacher.vue'
 import ErrorPage from './views/ErrorPage.vue'
+import Done from './views/Done.vue'
 
 export default new Router({
   routes: [{
@@ -25,6 +26,9 @@ export default new Router({
       path: '/student/appointed',
       name: 'student/appointed',
       component: Appointed,
+    }, {
+      path: '/student/done',
+      component: Done,
     }, {
       path: '/teacher',
       component: Teacher,
