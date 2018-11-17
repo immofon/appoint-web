@@ -28,7 +28,8 @@ export default {
           kv.set("user.account", this.account);
           kv.set("user.password", this.password);
 
-          console.log(r);
+          //console.log(r);
+
           if (r.details.role == "student") {
             // if unappointed
             console.log("ok");
@@ -39,13 +40,17 @@ export default {
             this.$router.push("/teacher");
           } else if (r.details.role == "admin") {
             //TODO
+            this.$message("TODO");
+            this.$router.push("/error");
+          } else {
+            this.$router.push("/error");
           }
         } catch (e) {
           if (e.status == "unauthorized") {
             this.$message.error("学号或密码错误");
           } else {
             //TODO
-            this.$message.error(JSON.stringify(e));
+            this.$message.error("登陆失败");
           }
         }
       })();

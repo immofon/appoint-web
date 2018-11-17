@@ -8,6 +8,7 @@ import TimeRange from './components/TimeRange.vue'
 
 import Appointed from './views/Appointed.vue'
 import Teacher from './views/Teacher.vue'
+import ErrorPage from './views/ErrorPage.vue'
 
 export default new Router({
   routes: [{
@@ -27,6 +28,10 @@ export default new Router({
     }, {
       path: '/teacher',
       component: Teacher,
+    }, {
+      path: '/error',
+      props: true,
+      component: ErrorPage,
     }, {
       path: '/about',
       name: 'about',
