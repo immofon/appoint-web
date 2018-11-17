@@ -35,6 +35,10 @@ export default {
 
             this.$router.push("/student/trs");
             // else
+          } else if (r.details.role == "teacher") {
+            this.$router.push("/teacher");
+          } else if (r.details.role == "admin") {
+            //TODO
           }
         } catch (e) {
           if (e.status == "unauthorized") {

@@ -7,6 +7,7 @@ import Login from './components/Login.vue'
 import TimeRange from './components/TimeRange.vue'
 
 import Appointed from './views/Appointed.vue'
+import Teacher from './views/Teacher.vue'
 
 export default new Router({
   routes: [{
@@ -23,8 +24,10 @@ export default new Router({
       path: '/student/appointed',
       name: 'student/appointed',
       component: Appointed,
-    },
-    {
+    }, {
+      path: '/teacher',
+      component: Teacher,
+    }, {
       path: '/about',
       name: 'about',
       // route level code-splitting
