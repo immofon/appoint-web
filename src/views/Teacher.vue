@@ -1,12 +1,18 @@
 <template>
     <div id="teacher">
-        <el-table
+      <div id="nav">
+        <el-button @click="$router.push('/teacher/schedule')">日程安排</el-button>
+      </div>
+    <el-table
       :data="time_ranges_table"
       style="width: 100%">
       <el-table-column
-        prop="from"
         label="开始时间"
         min-width="100">
+        <template slot-scope="scope">
+          <span style="margin-right:1rem">{{ scope.row.from }}</span>
+          <el-tag>{{ scope.row.week }}</el-tag>
+        </template>
       </el-table-column>
       <el-table-column
         prop="during"
@@ -21,16 +27,18 @@
       <el-table-column
       fixed="right"
       label="操作">
-      <template slot-scope="scope">
-        <el-button v-if="canEnable(scope.row)" @click="open_tr(scope.row.id)" type="primary">
-          开放
-        </el-button>
-        <el-button v-if="canDisable(scope.row)" @click="close_tr(scope.row.id)" type="warning">
-          关闭
-        </el-button>
-      </template>
-    </el-table-column>
+        <template slot-scope="scope">
+          <el-button v-if="canEnable(scope.row)" @click="open_tr(scope.row.id)" type="primary">
+            开放
+          </el-button>
+          <el-button v-if="canDisable(scope.row)" @click="close_tr(scope.row.id)" type="warning">
+            关闭
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
+
+     
     </div>
 </template>
 <script>
@@ -69,6 +77,7 @@ export default {
         return {
           id: `${tr.from}_${tr.to}`,
           from: utils.unix2time(tr.from),
+          week: utils.unix2week(tr.from),
           during: `${Math.ceil((tr.to - tr.from) / 60)}分钟`,
           status: tr.status,
           status_name: status2name(tr.status)

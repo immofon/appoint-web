@@ -10,6 +10,7 @@ import Appointed from './views/Appointed.vue'
 import Teacher from './views/Teacher.vue'
 import ErrorPage from './views/ErrorPage.vue'
 import Done from './views/Done.vue'
+import Schedule from '@/views/Schedule.vue'
 
 export default new Router({
   routes: [{
@@ -32,6 +33,9 @@ export default new Router({
     }, {
       path: '/teacher',
       component: Teacher,
+    }, {
+      path: '/teacher/schedule',
+      component: Schedule,
     }, {
       path: '/error',
       props: true,
