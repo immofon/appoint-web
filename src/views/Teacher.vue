@@ -2,6 +2,7 @@
     <div id="teacher">
       <div id="nav">
         <el-button @click="$router.push('/teacher/schedule')">日程安排</el-button>
+        <el-button @click="$router.push('/teacher/manage/student')">管理学生</el-button>
       </div>
     <el-table
       :data="time_ranges_table"
@@ -73,6 +74,7 @@ export default {
   },
   computed: {
     time_ranges_table() {
+      // TODO:sort
       return this.time_ranges.map(tr => {
         return {
           id: `${tr.from}_${tr.to}`,
