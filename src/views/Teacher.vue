@@ -1,5 +1,6 @@
 <template>
     <div id="teacher">
+      管理预约时段
       <div id="nav">
         <el-button @click="$router.push('/teacher/schedule')">日程安排</el-button>
         <el-button @click="$router.push('/teacher/manage/student')">管理学生</el-button>
