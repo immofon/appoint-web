@@ -1,7 +1,7 @@
 import sleep from "./sleep";
 import ReconnectingWebSocket from "./reconnecting-websocket";
 
-let ws = new ReconnectingWebSocket("ws://localhost:8100/ws", null, {
+let ws = new ReconnectingWebSocket(`ws://${location.hostname}:8100/ws`, null, {
   maxReconnectInterval: 3000,
   reconnectDecay: 1.0
 });
@@ -19,9 +19,6 @@ ws.onclose = () => {
 };
 ws.onmessage = evt => {
   const ret = JSON.parse(evt.data);
-  if (ret.details["__debug"]) {
-    console.debug("#ws# " + ret.details.__debug, ret);
-  }
 
   const callback = rtable[ret.id];
   if (typeof callback == "function") {
