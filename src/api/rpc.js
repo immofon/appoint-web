@@ -1,7 +1,7 @@
 import sleep from "./sleep";
 import ReconnectingWebSocket from "./reconnecting-websocket";
 
-let ws = new ReconnectingWebSocket(`ws://${location.hostname}:8100/ws`, null, {
+let ws = new ReconnectingWebSocket(`ws://39.105.42.45:8100/ws`, null, {
   maxReconnectInterval: 3000,
   reconnectDecay: 1.0
 });

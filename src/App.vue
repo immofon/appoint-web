@@ -1,8 +1,23 @@
 <template>
-  <div id="app">
+  <div id="app"  v-loading="loading">
     <router-view/>
   </div>
 </template>
+<script>
+import rpc from "@/api/rpc.js";
+export default {
+  data() {
+    return {
+      loading: true
+    };
+  },
+  mounted() {
+    setInterval(() => {
+      this.loading = !rpc.connected();
+    }, 300);
+  }
+};
+</script>
 
 <style>
 #app {

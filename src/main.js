@@ -3,7 +3,7 @@ import App from './App.vue'
 import './plugins/element.js'
 import router from './router'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 new Vue({
   router,
