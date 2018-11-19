@@ -45,6 +45,9 @@ export default new Router({
       path: '/error',
       props: true,
       component: ErrorPage,
+    }, {
+      path: '*',
+      redirect: '/',
     }
   ]
 })
