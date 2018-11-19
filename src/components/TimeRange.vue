@@ -80,7 +80,10 @@ export default {
         trs = trs.sort((a, b) => {
           return a.from > b.from;
         });
-
+        const now = Math.round(new Date().getTime() / 1000);
+        trs = trs.filter(tr => {
+          return tr.from > now;
+        });
         this.time_ranges = trs;
         console.log(trs);
       } catch (e) {
